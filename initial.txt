@@ -1,0 +1,18 @@
+npm init -y       - > packagge.json
+
+npm install -d typescript   ->for typescript
+
+
+npx tsc --init     ->creates tsconfing.json
+change root dir to src
+        out dir to dist
+
+>>>>
+- Install dependencies for express
+
+npm install express 
+
+
+
+
+-d means development ma using not in production
