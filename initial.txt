@@ -13,6 +13,13 @@ change root dir to src
 npm install express 
 
 
-
+npm install -d @types/express
 
 -d means development ma using not in production
+
+
+
+
+//run 
+
+npm run build
