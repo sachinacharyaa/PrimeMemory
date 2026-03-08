@@ -54,6 +54,23 @@ app.post("/api/v1/signin", async (req, res) => {
   }
 });
 
+app.post("api/v1/content", async (req, res) => {
+  const link = req.body.link;
+  const title = req.body.title;
+
+  await ContentModel.create({
+    link,
+    title,
+    type: req.body.type,
+    userId: req.userId,
+    tags: [],
+  });
+
+  res.json({
+    message: "Content Added",
+  });
+});
+
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
