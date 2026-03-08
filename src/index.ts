@@ -1,6 +1,11 @@
 import express from "express";
+import jwt from "jsonwebtoken";
+import { JWT_PASSWORD } from "./config";
+import { userMiddleware } from "./middleware";
+import cors from "cors";
 
-app.post("/api/v1/signup", async (req, res) => {});
+const app = express();
+app.use(express.json());
+app.use(cors());
 
-app.post("/api/v1/signin", async (req, res) => {});
-app.listen(3000);
+app.post("api/v1/signup", async (req, res) => {});
