@@ -1,7 +1,7 @@
 import mongoose, { model, Schema } from "mongoose";
 
 mongoose.connect(
-  " mongodb+srv://sachinacharya365official_db_user:kEX4fEHa1FNjVyWt@cluster0.k8tooiv.mongodb.net/primeMemory",
+  "mongodb+srv://sachinacharya365official_db_user:kEX4fEHa1FNjVyWt@cluster0.k8tooiv.mongodb.net/primeMemory",
 );
 
 //schema always with lowercase
@@ -27,6 +27,6 @@ const linkSchema = new Schema({
   },
 });
 //model start with Uppercase
-const UserModel = mongoose.model("User", userSchema);
-const ContentModel = mongoose.model("content", contentSchema);
-const LinkModel = mongoose.model("Links", linkSchema);
+export const UserModel = mongoose.model("User", userSchema);
+export const ContentModel = mongoose.model("content", contentSchema);
+export const LinkModel = mongoose.model("Links", linkSchema);
