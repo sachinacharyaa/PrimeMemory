@@ -16,8 +16,9 @@ const express_1 = __importDefault(require("express"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const cors_1 = __importDefault(require("cors"));
 const db_1 = require("./db");
+const middleware_1 = require("./middleware");
+const config_1 = require("./config");
 const app = (0, express_1.default)();
-const JWT_PASSWORD = "sajncnaoeocew";
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -48,7 +49,7 @@ app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
     if (existingUser) {
         const token = jsonwebtoken_1.default.sign({
             id: existingUser._id,
-        }, JWT_PASSWORD);
+        }, config_1.JWT_PASSWORD);
         res.json({
             token,
         });
@@ -58,6 +59,39 @@ app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
             message: "Incorrrect credentials",
         });
     }
+}));
+app.post("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const link = req.body.link;
+    const title = req.body.title;
+    yield db_1.ContentModel.create({
+        link,
+        title,
+        type: req.body.type,
+        userId: req.userId, // now set by middleware
+        tags: [],
+    });
+    res.json({
+        message: "Content Added",
+    });
+}));
+app.get("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userId = req.userId;
+    const content = yield db_1.ContentModel.find({
+        userId: userId,
+    }).populate("userId", "username");
+    res.json({
+        content,
+    });
+}));
+app.delete("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const contentId = req.body.contentId;
+    yield db_1.ContentModel.deleteMany({
+        contentId,
+        userId: req.userId,
+    });
+    res.json({
+        message: "Deleted",
+    });
 }));
 app.listen(3000, () => {
     console.log("Server running on port 3000");
