@@ -9,8 +9,12 @@ function App() {
 
   return (
     <>
-     <Button />
+     <Button  variant ="primary" text = "share"/>
+    
+    <Button  variant ="secondary" text = "Add content" />
     </>
+
+
   )
 }
 
