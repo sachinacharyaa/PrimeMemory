@@ -23,6 +23,7 @@
 import "./App.css"
 import { Button } from './component/ui/Button'
 import { PlusIcon } from "./Icon/plusIcon"
+import { ShareIcon } from "./Icon/shareIcon"
 
 
 function App(){
@@ -30,11 +31,43 @@ function App(){
   return(
     <>
     
-    <Button  size = "lg" title = "share"></Button>
-    <Button  size = "lg" title = "Submit"></Button>
-    <PlusIcon size = {"lg"} />
-     <PlusIcon size = {"lg"} />
+    <Button
+    variant = {"primary"}
+     StartIcon = {<PlusIcon size = {"lg"}/>}
+    endIcon = {<ShareIcon size = {"lg"}/>}
+      size = "lg" 
+      title = {"share"}
+        ></Button>
+  
 
+
+   <Button
+    variant = {"secondary"}
+     StartIcon = {<PlusIcon size = {"lg"}/>}
+    endIcon = {<ShareIcon size = {"lg"}/>}
+      size = "lg" 
+      title = {"Add"}
+        ></Button>
+
+
+
+
+<Button
+    variant = {"primary"}
+     StartIcon = {<PlusIcon size = {"md"}/>}
+    endIcon = {<ShareIcon size = {"md"}/>}
+      size = "md" 
+      title = {"share"}
+        ></Button>
+
+        <Button
+    variant = {"primary"}
+     StartIcon = {<PlusIcon size = {"sm"}/>}
+    endIcon = {<ShareIcon size = {"sm"}/>}
+      size = "sm" 
+      title = {"share"}
+        ></Button>
+  
     </>
   )
 }
