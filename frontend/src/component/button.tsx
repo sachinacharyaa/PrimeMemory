@@ -1,42 +1,43 @@
 
-//interface let you define the type 
-export interface ButtonProps {
- variant: "primary" | "secondary" ;
- size : "sm" | "md" | "lg";
- text: string;
- startIcon: any; //worse because num and string supports
- endIcon: any;
- onClick : () => void;
-}
+// import type { ReactNode } from 'react'
 
-const variantStyles = {
-  "primary": "bg-purple-600 text-white",
-  "secondary": "bg-purple-400 text-purple-600"
-}
+// //interface let you define the type 
+// export interface ButtonProps {
+//  variant: "primary" | "secondary" ;
+//  size : "sm" | "md" | "lg";
+//  text: string;
+//  startIcon?: ReactNode;
+//  endIcon?: ReactNode;
+//  onClick?: () => void;
+// }
 
-const sizeStyles = {
-  "sm" : "p-3",
-  "md" : "p-6",
-  "lg" : "p-10",
+// const variantStyles = {
+//   "primary": "bg-purple-600 text-white",
+//   "secondary": "bg-purple-400 text-purple-600"
+// }
 
-}
-const defaultStyles = "rounded-md p-4"
+// const sizeStyles = {
+//   "sm" : "p-3",
+//   "md" : "p-6",
+//   "lg" : "p-10",
 
-
-
-export const Button = (props: ButtonProps) => {
-    //props.onClick contain below onClick function
-  return (
-  <button className={`${variantStyles[props.variant]} ${defaultStyles} ${sizeStyles[props.size]}`}>
-    {props.text}
-  </button>
-);
-} 
-//{variantStyles[props.variant]} = "primary" or "secondary"
+// }
+// const defaultStyles = "rounded-md flex"
 
 
-<Button variant = "primary" size = "md" 
-onClick={() =>{}}
- text = {"sac"} 
- startIcon = {"Y"} 
- endIcon={"x"}/>
+
+// export const Button = (props: ButtonProps) => {
+//     //props.onClick contain below onClick function
+//   return (
+//   <button
+//     className={`${variantStyles[props.variant]} ${defaultStyles} ${sizeStyles[props.size]}`}
+//     onClick={props.onClick}
+//   >
+//     {props.startIcon ? <div className="pr-3">{props.startIcon}</div>: null}
+//     {props.text}
+//     {props.endIcon} 
+//   </button>
+// );
+// } 
+// //{variantStyles[props.variant]} = "primary" or "secondary"
+
