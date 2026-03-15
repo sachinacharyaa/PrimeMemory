@@ -51,7 +51,7 @@ const contentSchema = new mongoose_1.Schema({
 const linkSchema = new mongoose_1.Schema({
     hash: String,
     userId: {
-        type: mongoose_1.Schema.Types.ObjectId,
+        type: mongoose_1.default.Types.ObjectId,
         ref: "User",
         required: true,
         unique: true,

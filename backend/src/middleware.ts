@@ -1,3 +1,5 @@
+//it is needed after you loged in
+
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { JWT_PASSWORD } from "./config";

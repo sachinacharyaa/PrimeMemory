@@ -18,6 +18,7 @@ const cors_1 = __importDefault(require("cors"));
 const db_1 = require("./db");
 const middleware_1 = require("./middleware");
 const config_1 = require("./config");
+const utils_1 = require("./utils");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
@@ -91,6 +92,61 @@ app.delete("/api/v1/content", middleware_1.userMiddleware, (req, res) => __await
     });
     res.json({
         message: "Deleted",
+    });
+}));
+app.post("/api/v1/brain/share", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const share = req.body.share;
+    if (share) {
+        const existingLink = yield db_1.LinkModel.findOne({
+            userId: req.userId,
+        });
+        if (existingLink) {
+            return res.json({
+                hash: existingLink.hash,
+            });
+        }
+        const link = yield db_1.LinkModel.create({
+            userId: req.userId,
+            hash: (0, utils_1.random)(10),
+        });
+        res.json({
+            hash: link.hash,
+        });
+    }
+    else {
+        yield db_1.LinkModel.deleteOne({
+            userId: req.userId,
+        });
+        res.json({
+            message: "Link removed",
+        });
+    }
+}));
+app.get("/api/v1/brain/:shareLink", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const hash = req.params.shareLink;
+    const link = yield db_1.LinkModel.findOne({
+        hash: hash,
+    });
+    if (!link) {
+        return res.status(411).json({
+            message: "Invalid share link",
+        });
+    }
+    //userId
+    const content = yield db_1.ContentModel.find({
+        userId: link.userId,
+    });
+    const user = yield db_1.UserModel.findOne({
+        _id: link.userId,
+    });
+    if (!user) {
+        res.status(411).json({
+            message: "User not found, error should ideally not happen",
+        });
+    }
+    res.json({
+        username: user === null || user === void 0 ? void 0 : user.username,
+        content: content,
     });
 }));
 app.listen(3000, () => {
