@@ -5,8 +5,8 @@ interface ButtonInterface{
   //here we are saying, that  input can be string and also React Elements
     title: string | ReactElement;
     size: "lg" | "sm" | "md";
-    endIcon?: ReactElement;
-    StartIcon?: ReactElement;
+    endIcon?: React.ElementType;
+    startIcon?: React.ElementType;
     variant : "primary" |"secondary";
 }
 
@@ -33,11 +33,11 @@ return (
   }
 >
   <div className = "flex item-center"   >
-    {props.StartIcon}
+    {props.startIcon && <props.startIcon size={props.size} />}
     <div className="pl-3 pr-3">
     {props.title}
       </div>
-    {props.endIcon}
+    {props.endIcon && <props.endIcon size={props.size} /> }
     </div> 
   </button>
 )
