@@ -9,6 +9,7 @@ export function Card(){
             </div>
 
             <div className="flex">
+                
             <ShareIcon size = {"md"}>
             </ShareIcon>
 
