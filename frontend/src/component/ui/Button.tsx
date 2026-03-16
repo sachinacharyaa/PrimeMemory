@@ -32,7 +32,7 @@ return (
     " " + variantStyles[props.variant]
   }
 >
-  <div className = "flex item-center"   >
+  <div className = "flex  items-center"   >
     {props.startIcon && <props.startIcon size={props.size} />}
     <div className="pl-3 pr-3">
     {props.title}
