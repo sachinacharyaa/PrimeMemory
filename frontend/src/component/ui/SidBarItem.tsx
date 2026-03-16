@@ -5,6 +5,11 @@ export function SideBarItem({text, icon}:{
     icon: ReactElement;
 }){
     return <div className="flex">
-        {icon} {text}
+        <div className="p-4">
+        {icon} 
+        </div>
+        <div className="p-4">
+             {text}
+        </div>
     </div>
 }
