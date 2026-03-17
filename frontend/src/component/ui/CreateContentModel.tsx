@@ -11,17 +11,16 @@ export function CreateContentModel({ open, onClose }: CreateContentModelProps) {
   return (
     <div>
       {open && (
-        <div
-          className="fixed inset-0 bg-black/50 flex items-center justify-center"
-        >
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
           <div className="bg-white p-4 rounded">
             <div className="flex justify-center">
               <CrossIcon></CrossIcon>
             </div>
-            <div className="mt-4 flex flex-col items-center gap-2">
+            <div className="mt-4 flex flex-col items-center gap-2 m-4">
               <Input placeholder={"Title"}></Input>
               <Input placeholder={"Link"}></Input>
             </div>
+            {/* <Button variant="primary" text="Submit" /> */}
           </div>
         </div>
       )}
@@ -40,7 +39,7 @@ function Input({ onChange, placeholder }: InputProps) {
       <input
         placeholder={placeholder}
         type={"text"}
-        className="px-4 py-2 w-64 text-center"
+        className="px-4 py-2 w-64 text-center border rounded m-2"
         onChange={onChange}
       ></input>
     </div>
