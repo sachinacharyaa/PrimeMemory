@@ -81,7 +81,7 @@ export function Card({ title, link, type }: CardProps) {
     <div>
       <div
         className="p-4 bg-white rounded-md shadow-md border-slate-300
-        max-w-72 border minh-48 min-w-72"
+        max-w-72 border min-h-48 min-w-72"
       >
         <div className="flex justify-between">
           <div className="flex items-center">

@@ -7,21 +7,23 @@ import { Card } from "./component/ui/card";
 function App() {
   return (
     <>
-      <Button
-        variant={"primary"}
-        size="md"
-        title={"Add Content"}
-        startIcon={PlusIcon}
-      ></Button>
+      <div className="flex justify-end">
+        <Button
+          variant={"primary"}
+          size="md"
+          title={"Add Content"}
+          startIcon={PlusIcon}
+        ></Button>
 
-      <Button
-        variant={"secondary"}
-        size="md"
-        title={"Share Brain"}
-        startIcon={ShareIcon}
-      ></Button>
+        <Button
+          variant={"secondary"}
+          size="md"
+          title={"Share Brain"}
+          startIcon={ShareIcon}
+        ></Button>
+      </div>
 
-      <div className="flex">
+      <div className="flex gap-4">
         <Card
           type="twitter"
           link="https://x.com/sachinnacharya/status/2028888621005324351"
