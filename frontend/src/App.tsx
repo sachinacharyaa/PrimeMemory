@@ -3,10 +3,12 @@ import { Button } from "./component/ui/Button";
 import { PlusIcon } from "./Icon/plusIcon";
 import { ShareIcon } from "./Icon/shareIcon";
 import { Card } from "./component/ui/card";
+import { CreateContentModel } from "./component/ui/CreateContentModel";
 
 function App() {
   return (
     <>
+      <CreateContentModel open={true} />
       <div className="flex justify-end">
         <Button
           variant={"primary"}
