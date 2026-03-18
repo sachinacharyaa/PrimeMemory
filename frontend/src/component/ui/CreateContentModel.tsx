@@ -14,7 +14,9 @@ export function CreateContentModel({ open, onClose }: CreateContentModelProps) {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
           <div className="bg-white p-4 rounded">
             <div className="flex justify-center">
-              <CrossIcon></CrossIcon>
+              <div onClick={onClose} className="cursor-pointer">
+                <CrossIcon></CrossIcon>
+              </div>
             </div>
             <div className="mt-4 flex flex-col items-center gap-2 m-4">
               <Input placeholder={"Title"}></Input>

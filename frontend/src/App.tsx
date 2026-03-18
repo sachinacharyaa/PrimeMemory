@@ -4,13 +4,23 @@ import { PlusIcon } from "./Icon/plusIcon";
 import { ShareIcon } from "./Icon/shareIcon";
 import { Card } from "./component/ui/card";
 import { CreateContentModel } from "./component/ui/CreateContentModel";
+import { useState } from "react";
 
 function App() {
+  const [modelOpen, setModelOpen] = useState(true);
   return (
     <>
-      <CreateContentModel open={true} />
+      <CreateContentModel
+        open={modelOpen}
+        onClose={() => {
+          setModelOpen(false);
+        }}
+      />
       <div className="flex justify-end">
         <Button
+          onClick={() => {
+            setModelOpen(true);
+          }}
           variant={"primary"}
           size="md"
           title={"Add Content"}
