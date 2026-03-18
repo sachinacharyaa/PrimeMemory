@@ -1,7 +1,7 @@
 import { Button } from "../component/ui/Button";
 import { Input } from "../component/Input";
 
-export function SignUp() {
+export function SignIn() {
   return (
     <div className="h-screen w-screen bg-gray-200 flex justify-center items-center">
       <div className="bg-white rounded-xl border-2 min-w-48 p-8">
@@ -9,7 +9,7 @@ export function SignUp() {
         <Input placeholder="Password"></Input>
 
         <div className="flex justify-center pt-4 cursor-pointer">
-          <Button variant="primary" title="signin" fullWidth={true}></Button>
+          <Button variant="primary" title="Signin" fullWidth={true}></Button>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ export function SignUp() {
         <Input placeholder="Password"></Input>
 
         <div className="flex justify-center pt-4 cursor-pointer">
-          <Button variant="primary" title="signup" fullWidth={true}></Button>
+          <Button variant="primary" title="Signup" fullWidth={true}></Button>
         </div>
       </div>
     </div>
