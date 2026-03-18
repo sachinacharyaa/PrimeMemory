@@ -8,6 +8,8 @@ interface ButtonInterface {
   startIcon?: React.ElementType;
   variant: "primary" | "secondary";
   onClick?: () => void;
+  fullWidth?: boolean; // ✅ add this
+  loading?: boolean;
 }
 
 const sizeStyles = {
@@ -15,6 +17,8 @@ const sizeStyles = {
   md: "px-4 py-2 text-md rounded-md ",
   sm: "px-4 py-1  text-sm rounded-sm",
 };
+
+const defaultStyles = "px-4 py-2 rounded-md font-light flex items-center";
 
 const variantStyles = {
   primary: "bg-purple-600 text-white",
@@ -26,7 +30,12 @@ export function Button(props: ButtonInterface) {
     <button
       onClick={props.onClick}
       className={
-        sizeStyles[props.size] + " " + " " + variantStyles[props.variant]
+        sizeStyles[props.size] +
+        " " +
+        variantStyles[props.variant] +
+        " " +
+        defaultStyles +
+        (props.fullWidth ? " w-full flex justify-center items-center" : "")
       }
     >
       <div className="flex  items-center">
