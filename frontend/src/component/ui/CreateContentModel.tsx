@@ -1,6 +1,7 @@
 // for Add content
 
 import { CrossIcon } from "../../Icon/crossIcon";
+import { Button } from "./Button";
 
 interface CreateContentModelProps {
   open: boolean;
@@ -22,7 +23,9 @@ export function CreateContentModel({ open, onClose }: CreateContentModelProps) {
               <Input placeholder={"Title"}></Input>
               <Input placeholder={"Link"}></Input>
             </div>
-            {/* <Button variant="primary" text="Submit" /> */}
+            <div className="flex justify-center">
+              <Button variant="primary" title="Submit" size="md" />
+            </div>
           </div>
         </div>
       )}
