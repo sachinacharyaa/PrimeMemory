@@ -3,7 +3,7 @@
 import { CrossIcon } from "../../Icon/crossIcon";
 import { Button } from "./Button";
 import { Input } from "../Input";
-import { useReducer, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 interface CreateContentModelProps {
   open: boolean;
@@ -17,8 +17,8 @@ enum ContenType {
 }
 
 export function CreateContentModel({ open, onClose }: CreateContentModelProps) {
-  const TitleRef = useRef<HTMLInputElement>();
-  const LinkRef = useRef<HTMLInputElement>();
+  const TitleRef = useRef<HTMLInputElement | null>(null);
+  const LinkRef = useRef<HTMLInputElement | null>(null);
   const [type, setType] = useState(ContenType.Youtube);
 
   function addContent() {
@@ -36,8 +36,8 @@ export function CreateContentModel({ open, onClose }: CreateContentModelProps) {
               </div>
             </div>
             <div className="mt-4 flex flex-col items-center gap-2 m-4">
-              <Input reference={TitleRef} placeholder={"Title"}></Input>
-              <Input reference={LinkRef} placeholder={"Link"}></Input>
+              <Input ref={TitleRef} placeholder={"Title"}></Input>
+              <Input ref={LinkRef} placeholder={"Link"}></Input>
             </div>
 
             <div>
@@ -48,6 +48,7 @@ export function CreateContentModel({ open, onClose }: CreateContentModelProps) {
                   variant={
                     type === ContenType.Youtube ? "primary" : "secondary"
                   }
+                  size="md"
                   onClick={() => {
                     setType(ContenType.Youtube);
                   }}
@@ -55,8 +56,9 @@ export function CreateContentModel({ open, onClose }: CreateContentModelProps) {
                 <Button
                   title="Twitter"
                   variant={
-                    type === ContenType.Youtube ? "primary" : "secondary"
+                    type === ContenType.Twitter ? "primary" : "secondary"
                   }
+                  size="md"
                   onClick={() => {
                     setType(ContenType.Twitter);
                   }}
