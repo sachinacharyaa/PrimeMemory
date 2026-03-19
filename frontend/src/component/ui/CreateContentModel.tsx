@@ -4,26 +4,65 @@ import { CrossIcon } from "../../Icon/crossIcon";
 import { Button } from "./Button";
 import { Input } from "../Input";
 import { useRef, useState } from "react";
+import { BACKEND_URL } from "../../config";
+import axios from "axios";
 
 interface CreateContentModelProps {
   open: boolean;
   onClose?: () => void;
+  onContentAdded?: () => void;
 }
 
 //define once and no scope of typo in type
-enum ContenType {
+enum ContentType {
   Youtube = "youtube",
   Twitter = "twitter",
 }
 
-export function CreateContentModel({ open, onClose }: CreateContentModelProps) {
+export function CreateContentModel({
+  open,
+  onClose,
+  onContentAdded,
+}: CreateContentModelProps) {
   const TitleRef = useRef<HTMLInputElement | null>(null);
   const LinkRef = useRef<HTMLInputElement | null>(null);
-  const [type, setType] = useState(ContenType.Youtube);
+  const [type, setType] = useState(ContentType.Youtube);
 
-  function addContent() {
+  async function addContent() {
     const title = TitleRef.current?.value;
     const link = LinkRef.current?.value;
+    const token = localStorage.getItem("token");
+
+    if (!title || !link) {
+      alert("Title and link are required");
+      return;
+    }
+    if (!token) {
+      alert("Please sign in first");
+      return;
+    }
+
+    try {
+      await axios.post(
+        `${BACKEND_URL}/api/v1/content`,
+        {
+          link,
+          title,
+          type,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      alert("Content added");
+      onContentAdded?.();
+      onClose?.();
+    } catch (error) {
+      alert("Failed to add content");
+    }
   }
   return (
     <div>
@@ -46,21 +85,21 @@ export function CreateContentModel({ open, onClose }: CreateContentModelProps) {
                 <Button
                   title="Youtube"
                   variant={
-                    type === ContenType.Youtube ? "primary" : "secondary"
+                    type === ContentType.Youtube ? "primary" : "secondary"
                   }
                   size="md"
                   onClick={() => {
-                    setType(ContenType.Youtube);
+                    setType(ContentType.Youtube);
                   }}
                 ></Button>
                 <Button
                   title="Twitter"
                   variant={
-                    type === ContenType.Twitter ? "primary" : "secondary"
+                    type === ContentType.Twitter ? "primary" : "secondary"
                   }
                   size="md"
                   onClick={() => {
-                    setType(ContenType.Twitter);
+                    setType(ContentType.Twitter);
                   }}
                 ></Button>
               </div>

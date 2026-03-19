@@ -6,51 +6,47 @@ import { Card } from "../component/ui/card";
 import { CreateContentModel } from "../component/ui/CreateContentModel";
 import { useState } from "react";
 import { SideBar } from "../component/SideBar";
+import { useContent } from "../hooks/useContent"; // ✅ add this
 
 export function Dashboard() {
   const [modelOpen, setModelOpen] = useState(false);
+
+  const { contents, refresh } = useContent();
+
   return (
     <>
-      <SideBar></SideBar>
+      <SideBar />
+
       {/* Main content */}
-      <div className="p-4 ml-72 h-min-screen bg-gray-100 border-2">
+      <div className="p-4 ml-72 min-h-screen bg-gray-100 border-2">
         <CreateContentModel
           open={modelOpen}
-          onClose={() => {
-            setModelOpen(false);
-          }}
+          onClose={() => setModelOpen(false)}
+          onContentAdded={refresh}
         />
-        <div className="flex justify-end">
+
+        <div className="flex justify-end gap-2">
           <Button
-            onClick={() => {
-              setModelOpen(true);
-            }}
-            variant={"primary"}
+            onClick={() => setModelOpen(true)}
+            variant="primary"
             size="md"
-            title={"Add Content"}
+            title="Add Content"
             startIcon={PlusIcon}
-          ></Button>
+          />
 
           <Button
-            variant={"secondary"}
+            variant="secondary"
             size="md"
-            title={"Share Brain"}
+            title="Share Brain"
             startIcon={ShareIcon}
-          ></Button>
+          />
         </div>
 
-        <div className="flex gap-4">
-          <Card
-            type="twitter"
-            link="https://x.com/sachinnacharya/status/2028888621005324351"
-            title="First Tweet"
-          ></Card>
-
-          <Card
-            type="youtube"
-            link="https://youtu.be/BTCdAVWNVcc?si=Dqnls1HsHjbTbY5j"
-            title="First Video"
-          />
+        {/* content */}
+        <div className="flex gap-4 mt-4">
+          {contents.map(({ type, link, title, _id }) => (
+            <Card key={_id} type={type} link={link} title={title} />
+          ))}
         </div>
       </div>
     </>
