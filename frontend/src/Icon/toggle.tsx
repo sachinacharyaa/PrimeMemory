@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { Button } from "../component/ui/Button";
 
-export function Toggle() {
-  const [dark, setDark] = useState(false);
+interface ToggleProps {
+  dark: boolean;
+  onToggle: () => void;
+}
 
+export function Toggle({ dark, onToggle }: ToggleProps) {
   return (
-    <div>
-      <div className={`h-screen ${dark ? "bg-black" : "bg-white"}`}></div>
-      <div
-        className="rounded-xl bg-purple-600 text-white"
-        onClick={() => setDark(!dark)}
-      ></div>
-    </div>
+    <Button
+      title={dark ? "Light Mode" : "Dark Mode"}
+      size="md"
+      variant="secondary"
+      onClick={onToggle}
+    />
   );
 }
