@@ -13,11 +13,12 @@ interface CreateContentModelProps {
   onContentAdded?: () => void;
 }
 
-//define once and no scope of typo in type
-enum ContentType {
-  Youtube = "youtube",
-  Twitter = "twitter",
-}
+// define once to avoid typos in string literals
+const CONTENT_TYPES = {
+  Youtube: "youtube",
+  Twitter: "twitter",
+} as const;
+type ContentType = (typeof CONTENT_TYPES)[keyof typeof CONTENT_TYPES];
 
 export function CreateContentModel({
   open,
@@ -26,7 +27,7 @@ export function CreateContentModel({
 }: CreateContentModelProps) {
   const TitleRef = useRef<HTMLInputElement | null>(null);
   const LinkRef = useRef<HTMLInputElement | null>(null);
-  const [type, setType] = useState(ContentType.Youtube);
+  const [type, setType] = useState<ContentType>(CONTENT_TYPES.Youtube);
 
   async function addContent() {
     const title = TitleRef.current?.value;
@@ -85,21 +86,21 @@ export function CreateContentModel({
                 <Button
                   title="Youtube"
                   variant={
-                    type === ContentType.Youtube ? "primary" : "secondary"
+                    type === CONTENT_TYPES.Youtube ? "primary" : "secondary"
                   }
                   size="md"
                   onClick={() => {
-                    setType(ContentType.Youtube);
+                    setType(CONTENT_TYPES.Youtube);
                   }}
                 ></Button>
                 <Button
                   title="Twitter"
                   variant={
-                    type === ContentType.Twitter ? "primary" : "secondary"
+                    type === CONTENT_TYPES.Twitter ? "primary" : "secondary"
                   }
                   size="md"
                   onClick={() => {
-                    setType(ContentType.Twitter);
+                    setType(CONTENT_TYPES.Twitter);
                   }}
                 ></Button>
               </div>
