@@ -1,17 +1,19 @@
 import { Button } from "../component/ui/Button";
 
-interface ToggleProps {
+interface ToogleProps {
   dark: boolean;
   onToggle: () => void;
 }
 
-export function Toggle({ dark, onToggle }: ToggleProps) {
+export function Toggle({ dark, onToggle }: ToogleProps) {
   return (
-    <Button
-      title={dark ? "Light Mode" : "Dark Mode"}
-      size="md"
-      variant="secondary"
-      onClick={onToggle}
-    />
+    <div>
+      <Button
+        title={dark ? "Light Mode" : "Dark Mode"}
+        size="md"
+        variant="primary"
+        onClick={onToggle}
+      ></Button>
+    </div>
   );
 }
