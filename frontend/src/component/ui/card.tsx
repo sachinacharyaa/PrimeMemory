@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { ShareIcon } from "../../Icon/shareIcon";
 import { DeleteContentModel } from "../deleteContent";
+import { UpdateContentModel } from "./update";
 
 declare global {
   interface Window {
@@ -18,8 +19,16 @@ interface CardProps {
   type: "twitter" | "youtube" | "x";
   contentId?: string;
   onDelete?: () => void;
+  onUpdate?: () => void;
 }
-export function Card({ title, link, type, contentId, onDelete }: CardProps) {
+export function Card({
+  title,
+  link,
+  type,
+  contentId,
+  onDelete,
+  onUpdate,
+}: CardProps) {
   const isTwitter = type === "twitter" || type === "x";
   const isYouTube = type === "youtube";
 
@@ -100,6 +109,16 @@ export function Card({ title, link, type, contentId, onDelete }: CardProps) {
                 <ShareIcon size={"md"}></ShareIcon>
               </a>
             </div>
+
+            {contentId && onUpdate && (
+              <UpdateContentModel
+                contentId={contentId}
+                initialTitle={title}
+                initialLink={link}
+                initialType={type}
+                onContentUpdated={onUpdate}
+              />
+            )}
 
             {contentId && onDelete && (
               <DeleteContentModel

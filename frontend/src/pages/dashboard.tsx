@@ -120,6 +120,7 @@ export function Dashboard() {
               title={title}
               contentId={!shareId ? _id : undefined}
               onDelete={!shareId ? refresh : undefined}
+              onUpdate={!shareId ? refresh : undefined}
             />
           ))}
         </div>
