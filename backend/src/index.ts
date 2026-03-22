@@ -85,11 +85,11 @@ app.get("/api/v1/content", userMiddleware, async (req, res) => {
   });
 });
 
-app.delete("/api/v1/content", userMiddleware, async (req, res) => {
-  const contentId = req.body.contentId;
+app.delete("/api/v1/content/:id", userMiddleware, async (req, res) => {
+  const contentId = req.params.id;
 
-  await ContentModel.deleteMany({
-    contentId,
+  await ContentModel.deleteOne({
+    _id: contentId,
     userId: req.userId,
   });
 
