@@ -113,7 +113,14 @@ export function Dashboard() {
         {/* content */}
         <div className="flex gap-4 mt-4 flex-wrap">
           {displayContents.map(({ type, link, title, _id }) => (
-            <Card key={_id} type={type} link={link} title={title} />
+            <Card
+              key={_id}
+              type={type}
+              link={link}
+              title={title}
+              contentId={!shareId ? _id : undefined}
+              onDelete={!shareId ? refresh : undefined}
+            />
           ))}
         </div>
       </div>
