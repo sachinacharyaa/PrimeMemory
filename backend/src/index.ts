@@ -98,6 +98,33 @@ app.delete("/api/v1/content/:id", userMiddleware, async (req, res) => {
   });
 });
 
+app.put("/api/v1/content/:id", userMiddleware, async (req, res) => {
+  const contentId = req.params.id;
+  const { title, link, type } = req.body;
+
+  const updated = await ContentModel.updateOne(
+    {
+      _id: contentId,
+      userId: req.userId,
+    },
+    {
+      title,
+      link,
+      type,
+    },
+  );
+
+  if (updated.matchedCount === 0) {
+    return res.status(404).json({
+      message: "Content not found",
+    });
+  }
+
+  res.json({
+    message: "Content updated",
+  });
+});
+
 app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
   const share = req.body.share;
 
