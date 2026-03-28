@@ -1,45 +1,43 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../component/ui/Button";
-import { Toggle } from "../Icon/toggle";
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { Button } from "../component/ui/Button";
+// import { Toggle } from "../Icon/toggle";
+import { Brain } from "../Icon/BrainIcon";
 
+//Navbar//
 export function LandingPage() {
-  const navigate = useNavigate();
-  const [dark, setDark] = useState(false);
+  function Navbar() {
+    return (
+      <header className="w-full bg-white shadow px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex text-2xl items-center">
+          <div className="pr-4 text-purple-600 ">
+            <Brain></Brain>
+          </div>
+          <h1> PrimeMemory</h1>
+          </div>
+
+        {/* Links */}
+          <div className="flex gap-6 text-gray-700">
+            <p className="cursor-pointer hover:text-purple-600">Home</p>
+            <p className="cursor-pointer hover:text-purple-600">Product</p>
+            <p className="cursor-pointer hover:text-purple-600">About</p>
+          </div>
+
+        {/* Button */}
+          <button className="bg-purple-600 text-white px-4 py-2 rounded-md">
+            Login
+          </button>
+        </div>
+      </header>
+    );
+  }
 
   return (
-    <div
-      className={`min-h-screen ${
-        dark ? "bg-black text-white" : "bg-gray-100 text-gray-900"
-      }`}
-    >
-      {/* 🔝 Navbar */}
-      <div className="flex justify-end p-4">
-        <Toggle dark={dark} onToggle={() => setDark(!dark)} />
-      </div>
-
-      {/* 🎯 Main Content */}
-      <div className="flex flex-col items-center gap-6 pt-6">
-        <h1 className="text-xl font-semibold">
-          Hello There, Its A Landing Page
-        </h1>
-
-        <div className="flex gap-4">
-          <Button
-            onClick={() => navigate("/signin")}
-            variant="primary"
-            title="Signin"
-            size="md"
-          />
-
-          <Button
-            onClick={() => navigate("/signup")}
-            variant="secondary"
-            title="Signup"
-            size="md"
-          />
-        </div>
-      </div>
+    <div className="min-h-screen">
+      <Navbar />
+      <main className="p-8"></main>
     </div>
   );
 }
+export default LandingPage;

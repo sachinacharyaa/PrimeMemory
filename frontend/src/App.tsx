@@ -13,9 +13,17 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/share/:shareId" element={<Dashboard />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
+function ErrorPage() {
+  return (
+    <div>
+      <h1> Content Not Found</h1>
+    </div>
+  );
+}
 export default App;
