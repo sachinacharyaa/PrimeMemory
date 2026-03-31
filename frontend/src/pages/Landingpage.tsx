@@ -76,7 +76,7 @@ export function LandingPage() {
                 One platform. From first idea to lasting recall.
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                PrimeMemory connects your notes, meetings, and decisions into a
+                PrimeMemory connects your notes, meetings and decisions into a
                 single second memory, ready whenever you need it.
               </p>
 
