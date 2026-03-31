@@ -44,9 +44,9 @@ export function LandingPage() {
   }
   function Body() {
     const images = [
-      "/images/memory-1.png",
-      "/images/memory-2.png",
-      "/images/memory-3.png",
+      "https://images.unsplash.com/photo-1763041316817-36ffaa4d2c15",
+      "https://images.unsplash.com/photo-1774205884988-e770d50eb523",
+      "https://images.unsplash.com/photo-1773332611522-06b86b48cbf1",
     ];
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -60,7 +60,7 @@ export function LandingPage() {
     }, [images.length]);
 
     return (
-      <section className="bg-gradient-to-b from-white via-white to-purple-50 px-6 py-14">
+      <section className=" from-white via-white to-purple-50 px-6 py-14">
         <div className="mx-auto max-w-6xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm shadow-sm">
             <span className="text-purple-600">✦</span>
@@ -83,7 +83,9 @@ export function LandingPage() {
               <div className="mt-6 space-y-4 text-gray-600">
                 <div className="flex items-start gap-3">
                   <span className="mt-2 h-2.5 w-2.5 rounded-full bg-purple-600" />
-                  <span>Capture decisions instantly and never lose context.</span>
+                  <span>
+                    Capture decisions instantly and never lose context.
+                  </span>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="mt-2 h-2.5 w-2.5 rounded-full bg-purple-600" />
@@ -100,7 +102,7 @@ export function LandingPage() {
                   className="rounded-xl bg-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-200"
                   onClick={handleSignUp}
                 >
-                  Book a Demo
+                  Lets Start to Recall
                 </button>
                 <button className="rounded-xl border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700">
                   See How It Works
@@ -112,7 +114,7 @@ export function LandingPage() {
               <div className="absolute -right-6 top-10 h-40 w-40 rounded-full bg-purple-200/40 blur-3xl" />
               <div className="absolute -left-8 bottom-4 h-48 w-48 rounded-full bg-pink-200/40 blur-3xl" />
 
-              <div className="relative overflow-hidden rounded-[32px] bg-white shadow-2xl ring-1 ring-black/5">
+              <div className="relative overflow-hidden  bg-white shadow-2xl ring-1 ring-black/5">
                 <div
                   className="flex h-[420px] transition-transform duration-700 ease-in-out"
                   style={{ transform: `translateX(-${activeIndex * 100}%)` }}
@@ -131,9 +133,6 @@ export function LandingPage() {
 
                 <div className="absolute left-6 top-6 rounded-2xl bg-white/95 px-4 py-3 text-xs font-semibold text-gray-700 shadow-lg">
                   Smart Recall
-                </div>
-                <div className="absolute bottom-6 right-6 rounded-full bg-white/95 px-4 py-2 text-xs font-semibold text-gray-700 shadow">
-                  Global search ready
                 </div>
               </div>
 
@@ -162,4 +161,3 @@ export function LandingPage() {
   );
 }
 export default LandingPage;
-
