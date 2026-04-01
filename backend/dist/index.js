@@ -94,6 +94,26 @@ app.delete("/api/v1/content/:id", middleware_1.userMiddleware, (req, res) => __a
         message: "Deleted",
     });
 }));
+app.put("/api/v1/content/:id", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const contentId = req.params.id;
+    const { title, link, type } = req.body;
+    const updated = yield db_1.ContentModel.updateOne({
+        _id: contentId,
+        userId: req.userId,
+    }, {
+        title,
+        link,
+        type,
+    });
+    if (updated.matchedCount === 0) {
+        return res.status(404).json({
+            message: "Content not found",
+        });
+    }
+    res.json({
+        message: "Content updated",
+    });
+}));
 app.post("/api/v1/brain/share", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const share = req.body.share;
     if (share) {
