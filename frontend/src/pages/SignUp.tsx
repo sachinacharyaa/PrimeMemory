@@ -109,11 +109,11 @@ export function SignUp() {
         </section>
 
         <section className="relative flex items-center justify-center bg-[#0f1218] px-6 py-12">
-          <div className="absolute right-8 top-8 flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2">
+          {/* <div className="absolute right-8 top-8 flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2">
             <span className="h-3 w-3 rounded-full border border-white/40"></span>
             <span className="h-3 w-3 rounded-full border border-white/40"></span>
             <span className="h-3 w-3 rounded-full border border-white/40"></span>
-          </div>
+          </div> */}
 
           <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-[#151a21]/90 p-8 shadow-2xl backdrop-blur">
             <div className="flex flex-col items-center text-center">
