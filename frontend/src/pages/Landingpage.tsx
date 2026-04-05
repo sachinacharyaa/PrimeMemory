@@ -33,7 +33,7 @@ export function LandingPage() {
 
           {/* Button */}
           <button
-            className="bg-purple-600 text-white px-4 py-2 rounded-md"
+            className="bg-purple-600 text-white px-4 py-2 rounded-md hover:cursor-pointer"
             onClick={handleSignUp}
           >
             Sign Up
@@ -99,12 +99,12 @@ export function LandingPage() {
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <button
-                  className="rounded-xl bg-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-200"
+                  className="rounded-xl bg-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-200 hover:cursor-pointer"
                   onClick={handleSignUp}
                 >
                   Lets Start to Recall
                 </button>
-                <button className="rounded-xl border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700">
+                <button className="rounded-xl border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 hover:cursor-pointer">
                   See How It Works
                 </button>
               </div>
