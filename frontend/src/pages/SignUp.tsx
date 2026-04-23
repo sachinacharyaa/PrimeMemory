@@ -100,9 +100,9 @@ export function SignUp() {
                 Built for lasting clarity
               </h2>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-white/80">
-                PrimeMemory keeps your knowledge organized, searchable, and
-                ready when inspiration strikes. Sync across devices and never
-                lose a thought again.
+                PrimeMemory keeps your knowledge organized, searchable and ready
+                when inspiration strikes. Sync across devices and never lose a
+                thought again.
               </p>
             </div>
           </div>
