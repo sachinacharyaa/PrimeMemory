@@ -3,6 +3,7 @@
 PrimeMemory is a full-stack web app for saving and organizing useful links/content, then sharing a public read-only "brain" view with others using a generated short hash link.
 
 This repository is organized as a two-app workspace:
+
 - `frontend` - React + Vite + TypeScript client
 - `backend` - Express + TypeScript + MongoDB API
 
@@ -11,6 +12,7 @@ This repository is organized as a two-app workspace:
 ## 1) What This Project Does
 
 Core user flow:
+
 1. User signs up / signs in.
 2. User stores content items (title, link, type).
 3. User sees all personal items on dashboard.
@@ -25,6 +27,7 @@ Current branding in UI identifies product as **PrimeMemory**.
 ## 2) Tech Stack
 
 ### Frontend (`frontend`)
+
 - React 19
 - TypeScript
 - Vite
@@ -34,6 +37,7 @@ Current branding in UI identifies product as **PrimeMemory**.
 - ESLint (frontend only)
 
 ### Backend (`backend`)
+
 - Node.js + Express 5
 - TypeScript (compiled to `dist`)
 - MongoDB with Mongoose
@@ -73,6 +77,7 @@ secondBrain/
 ## 4) Routing Overview
 
 Defined in `frontend/src/App.tsx`:
+
 - `/` -> Landing page
 - `/signup` -> Signup screen
 - `/signin` -> Signin screen
@@ -89,9 +94,11 @@ Base URL (current frontend config): `http://localhost:3000`
 ### Auth
 
 #### `POST /api/v1/signup`
+
 Creates a new user.
 
 Request body:
+
 ```json
 {
   "username": "alice",
@@ -100,19 +107,23 @@ Request body:
 ```
 
 Response (success):
+
 ```json
 { "message": "User Signed Up" }
 ```
 
 Possible failure:
+
 - `411` if username already exists
 
 ---
 
 #### `POST /api/v1/signin`
+
 Authenticates user and returns JWT.
 
 Request body:
+
 ```json
 {
   "username": "alice",
@@ -121,11 +132,13 @@ Request body:
 ```
 
 Response (success):
+
 ```json
 { "token": "<jwt>" }
 ```
 
 Possible failure:
+
 - `403` invalid credentials
 
 ---
@@ -133,9 +146,11 @@ Possible failure:
 ### Content (Protected - requires `Authorization: Bearer <token>`)
 
 #### `POST /api/v1/content`
+
 Create content item.
 
 Request body:
+
 ```json
 {
   "title": "My link",
@@ -145,14 +160,17 @@ Request body:
 ```
 
 Response:
+
 ```json
 { "message": "Content Added" }
 ```
 
 #### `GET /api/v1/content`
+
 Returns current user's content list.
 
 Response:
+
 ```json
 {
   "content": [
@@ -168,9 +186,11 @@ Response:
 ```
 
 #### `PUT /api/v1/content/:id`
+
 Update one content item belonging to user.
 
 Request body:
+
 ```json
 {
   "title": "Updated",
@@ -180,17 +200,21 @@ Request body:
 ```
 
 Response:
+
 ```json
 { "message": "Content updated" }
 ```
 
 Possible failure:
+
 - `404` if content not found for this user
 
 #### `DELETE /api/v1/content/:id`
+
 Delete one content item belonging to user.
 
 Response:
+
 ```json
 { "message": "Deleted" }
 ```
@@ -200,27 +224,33 @@ Response:
 ### Share Brain
 
 #### `POST /api/v1/brain/share` (Protected)
+
 If body has `"share": true`, generates (or reuses) a unique hash for current user.
 
 Request:
+
 ```json
 { "share": true }
 ```
 
 Response:
+
 ```json
 { "hash": "abc123def0" }
 ```
 
 If `"share"` is falsey, existing share link is removed:
+
 ```json
 { "message": "Link removed" }
 ```
 
 #### `GET /api/v1/brain/:shareLink` (Public)
+
 Returns shared content and username for hash.
 
 Response:
+
 ```json
 {
   "username": "alice",
@@ -229,6 +259,7 @@ Response:
 ```
 
 Possible failure:
+
 - `411` invalid share link
 
 ---
@@ -238,10 +269,12 @@ Possible failure:
 Defined in `backend/src/db.ts`.
 
 ### `User`
+
 - `username: string` (unique)
 - `password: string`
 
 ### `content`
+
 - `title: string`
 - `link: string`
 - `tags: ObjectId[]` (ref `"Tag"`, no Tag schema currently implemented)
@@ -249,6 +282,7 @@ Defined in `backend/src/db.ts`.
 - `userId: ObjectId` (ref `"User"`, required)
 
 ### `Links`
+
 - `hash: string`
 - `userId: ObjectId` (ref `"User"`, required, unique)
 
@@ -257,14 +291,17 @@ Defined in `backend/src/db.ts`.
 ## 7) Authentication and Authorization
 
 Auth middleware (`backend/src/middleware.ts`) expects:
+
 - Header: `Authorization: Bearer <token>`
 - Token signed with backend `JWT_PASSWORD`
 - Decoded payload includes `id`
 
 On success:
+
 - `req.userId` is attached and used in protected queries
 
 On failure:
+
 - `403` returned
 
 ---
@@ -272,11 +309,13 @@ On failure:
 ## 8) Local Development Setup
 
 ## Prerequisites
+
 - Node.js 18+ (recommended)
 - npm
 - Internet access to MongoDB Atlas (current connection is cloud-hosted)
 
 ### A) Backend
+
 ```bash
 cd backend
 npm install
@@ -285,12 +324,15 @@ npm run start
 ```
 
 Backend listens on:
+
 - `http://localhost:3000`
 
 Note:
+
 - Current `npm run dev` is **not** watch mode. It runs `build` then `start`.
 
 ### B) Frontend
+
 ```bash
 cd frontend
 npm install
@@ -298,6 +340,7 @@ npm run dev
 ```
 
 Frontend default:
+
 - `http://localhost:5173`
 
 ---
@@ -305,12 +348,14 @@ Frontend default:
 ## 9) Existing Scripts
 
 ### Frontend scripts
+
 - `npm run dev` - start Vite dev server
 - `npm run build` - type-check/build frontend bundle
 - `npm run lint` - run ESLint
 - `npm run preview` - preview production build
 
 ### Backend scripts
+
 - `npm run build` - compile TypeScript into `dist`
 - `npm run start` - run compiled server
 - `npm run dev` - build then start (no auto-reload)
@@ -321,16 +366,19 @@ Frontend default:
 ## 10) Configuration Notes (Important)
 
 The current codebase contains hardcoded secrets/config values:
+
 - MongoDB connection URI in `backend/src/db.ts`
 - JWT secret in `backend/src/config.ts`
 - Frontend API URL in `frontend/src/config.ts`
 
 Recommended immediate improvements:
+
 1. Move these to environment variables.
 2. Add `.env.example` files for frontend/backend.
 3. Rotate exposed credentials and secrets.
 
 Suggested env variables:
+
 - Backend:
   - `PORT`
   - `MONGODB_URI`
@@ -356,6 +404,7 @@ Suggested env variables:
 ## 12) Recommended Next Steps
 
 Priority order:
+
 1. Add password hashing (`bcrypt`) and secure signin flow.
 2. Move secrets to env files and rotate leaked secrets.
 3. Add request validation and centralized error handling.
@@ -383,13 +432,14 @@ Priority order:
 Current maturity: **MVP / local-development focused**
 
 Strong points:
+
 - Clean basic full-stack flow
 - Token-protected content ownership checks
 - Share-link feature implemented end-to-end
 
 Before production:
+
 - Security hardening
 - Configuration/env cleanup
 - Observability + tests + CI/CD
 - Deployment architecture and CORS tightening
-
