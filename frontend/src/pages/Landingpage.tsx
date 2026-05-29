@@ -89,7 +89,7 @@ export function LandingPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="mt-2 h-2.5 w-2.5 rounded-full bg-purple-600" />
-                  <span>Search across projects, people, and past work.</span>
+                  <span>Search across projects, people and past work.</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="mt-2 h-2.5 w-2.5 rounded-full bg-purple-600" />
