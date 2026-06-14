@@ -73,7 +73,7 @@ export function LandingPage() {
           <div className="mt-10 grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
               <h2 className="text-4xl font-semibold tracking-tight text-gray-900 lg:text-5xl">
-                One platform. From first idea to lasting recall.
+                <i> One platform.</i> From first idea to lasting recall.
               </h2>
               <p className="mt-4 text-lg text-gray-600">
                 PrimeMemory connects your notes, meetings and decisions into a
