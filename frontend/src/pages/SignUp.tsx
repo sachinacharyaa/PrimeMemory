@@ -167,10 +167,10 @@ export function SignUp() {
               ></Button>
             </div>
 
-            <p className="mt-4 text-center text-sm text-white/60 hover:cursor-pointer ">
+            <p className="mt-4 text-center text-sm text-white/60  ">
               Already have an account?{" "}
               <button
-                className="text-[#7c5bff] hover:text-[#9a7bff] "
+                className="text-[#7c5bff] hover:text-[#9a7bff] hover:cursor-pointer "
                 onClick={() => navigate("/signin")}
               >
                 Sign In
