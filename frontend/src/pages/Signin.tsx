@@ -166,7 +166,7 @@ export function SignIn() {
             <p className="mt-4 text-center text-sm text-white/60">
               Don&apos;t have an account?{" "}
               <button
-                className="text-[#7c5bff] hover:text-[#9a7bff]"
+                className="text-[#7c5bff] hover:text-[#9a7bff] hover:cursor-pointer"
                 onClick={() => navigate("/signup")}
               >
                 Sign Up
